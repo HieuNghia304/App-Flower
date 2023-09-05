@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+//BottomNavigator
 class HomePage extends StatelessWidget {
   HomePage({ Key? key }) : super(key: key);
 

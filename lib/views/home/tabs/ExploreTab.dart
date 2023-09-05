@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+//Trang Chính
 class ExploreTab extends GetView<HomeController> {
   ExploreTab({ Key? key }) : super(key: key);
 
@@ -30,7 +31,7 @@ class ExploreTab extends GetView<HomeController> {
               child: TextField(
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-                  hintText: "Search E.g iPhone X",
+                  hintText: "Tìm kiếm hoa bạn muốn",
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Container(
@@ -48,18 +49,41 @@ class ExploreTab extends GetView<HomeController> {
               ),
             )
           ),
+
+
           SliverList(
             delegate: SliverChildListDelegate([
+              // Banner ứng dụng
               _buildOfferCarousel(context),
               _buildOfferIndicator(),
               SizedBox(height: 16,),
-              _buildSection('Top Categories', theme),
+
+              // Phần: Dịch Vụ Hoa Tươi
+              _buildSection('Dịch Vụ Hoa Tươi', theme),
               SizedBox(height: 8,),
+
+              // Phần: Danh mục sản phẩm
               _buildCategories(theme),
               SizedBox(height: 16,),
-              _buildSection('Discounts', theme),
+
+              // Phần: Sản phẩm mới
+              _buildSection('Những Sản phẩm mới', theme),
               SizedBox(height: 8,),
-              _buildDiscountedProducts(theme)
+              _buildDiscountedProducts(theme),
+              SizedBox(height: 8,),
+
+              // Phần: Ưu Đãi
+              _buildSection('Ưu Đãi', theme),
+              SizedBox(height: 8,),
+
+              // Phần: Sản phẩm Hoa Hồng
+              _buildRoseProducts(theme),
+              SizedBox(height: 8,),
+
+              // Phần: Sản phẩm Hoa Tốt Nghiệp
+              _buildSection('Hoa Tốt Nghiệp', theme),
+              SizedBox(height: 8,),
+              _buildGraduationFlowersProducts(theme),
             ]),
           ),
         ],
@@ -82,7 +106,7 @@ class ExploreTab extends GetView<HomeController> {
           onPageChanged: (index, reason) => controller.changeBanner(index),
         ),
         itemCount: controller.activeOffers.length,
-        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) 
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex)
           => _buildOffer(controller.activeOffers[itemIndex]),
       ),
     );
@@ -205,6 +229,7 @@ class ExploreTab extends GetView<HomeController> {
     );
   }
 
+  //Hàng Sản phẩm Mới
   Widget _buildDiscountedProducts(ThemeData theme) {
     return Container(
       height: 250,
@@ -261,6 +286,136 @@ class ExploreTab extends GetView<HomeController> {
                     )
                   ],
                 )
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  //Hàng Sản phẩm Ưu Đãi
+  Widget _buildRoseProducts(ThemeData theme) {
+    return Container(
+      height: 250,
+      child: ListView.builder(
+        padding: EdgeInsets.only(left: 16),
+        scrollDirection: Axis.horizontal,
+        itemCount: controller.discountedProducts.length, // Đảm bảo bạn đã cập nhật danh sách discountedProducts2
+        itemBuilder: (context, index) {
+          return AspectRatio(
+            aspectRatio: 1,
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed('/product/${controller.discountedProducts[index].id}');
+              },
+              child: Container(
+                clipBehavior: Clip.hardEdge,
+                margin: EdgeInsets.only(right: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Get.isDarkMode ? ColorConstants.gray700 : Colors.grey.shade200,
+                  border: Border.all(color: Get.isDarkMode ? Colors.transparent : Colors.grey.shade200, width: 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 150,
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl: controller.discountedProducts[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(controller.discountedProducts[index].name, style: theme.textTheme.subtitle1),
+                          SizedBox(height: 5,),
+                          Text(controller.discountedProducts[index].brand, style: theme.textTheme.bodyText2),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              Text("${controller.discountedProducts[index].price}", style: theme.textTheme.bodyText1?.copyWith(decoration: TextDecoration.lineThrough, color: ColorConstants.gray200),),
+                              SizedBox(width: 5,),
+                              Icon(IconlyLight.arrow_right, size: 18, color: Colors.grey.shade600, ),
+                              SizedBox(width: 5,),
+                              Text("${controller.discountedProducts[index].discountPrice}", style: theme.textTheme.subtitle1?.copyWith(),),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  //Hàng Hoa Tốt Nghiệp
+  Widget _buildGraduationFlowersProducts(ThemeData theme) {
+    return Container(
+      height: 250,
+      child: ListView.builder(
+        padding: EdgeInsets.only(left: 16),
+        scrollDirection: Axis.horizontal,
+        itemCount: controller.discountedProducts.length, // Đảm bảo bạn đã cập nhật danh sách discountedProducts2
+        itemBuilder: (context, index) {
+          return AspectRatio(
+            aspectRatio: 1,
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed('/product/${controller.discountedProducts[index].id}');
+              },
+              child: Container(
+                clipBehavior: Clip.hardEdge,
+                margin: EdgeInsets.only(right: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Get.isDarkMode ? ColorConstants.gray700 : Colors.grey.shade200,
+                  border: Border.all(color: Get.isDarkMode ? Colors.transparent : Colors.grey.shade200, width: 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 150,
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl: controller.discountedProducts[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(controller.discountedProducts[index].name, style: theme.textTheme.subtitle1),
+                          SizedBox(height: 5,),
+                          Text(controller.discountedProducts[index].brand, style: theme.textTheme.bodyText2),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              Text("${controller.discountedProducts[index].price}", style: theme.textTheme.bodyText1?.copyWith(decoration: TextDecoration.lineThrough, color: ColorConstants.gray200),),
+                              SizedBox(width: 5,),
+                              Icon(IconlyLight.arrow_right, size: 18, color: Colors.grey.shade600, ),
+                              SizedBox(width: 5,),
+                              Text("${controller.discountedProducts[index].discountPrice}", style: theme.textTheme.subtitle1?.copyWith(),),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );

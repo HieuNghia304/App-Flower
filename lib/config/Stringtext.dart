@@ -1,0 +1,7 @@
+
+class StringTexts {
+  static const String DescriptionNhatMatHuong = 'Cây Nhất Mạt Hương hay còn có tên gọi khác là cây Sen Đá Lá Thơm. Sở dĩ cây có tên như vậy vì cây có chứa tinh dầu thơm trong lá và thân. Khi bạn chạm nhẹ vào cây sẽ tỏa ra mùi hương thơm dễ chịu giống mùi bạc hà. Trong phong thủy cây mang ý nghĩa giúp giữ tài chính, giúp gia chủ chi tiêu hợp lý. Ngoài ra cây còn tác dụng đuổi côn trùng và muỗi.';
+  static const String DescriptionNuda = 'Cây sen đá Nuda có màu xanh, dạng đài, bông thường nhỏ và mọc theo bụi. Cây rất dễ sống và có sức phát triển khỏe, không cần yêu cầu nhiều ánh sáng, phù hợp nơi thoáng mát như ban công, cửa sổ, hiên nhà, quán cà phê…';
+  static const String DescriptionGiva = 'Cây sen đá Giva có dạng đài, lá to và có màu xanh. Những cây có sắc xanh ở lá thường không cần quá nhiều ánh sáng, điều quan trọng là cần sự thoáng mát. Chính vì thế cây sen đá Giva sẽ có thể phù hợp nơi có ít nắng như ban công, cửa sổ, hiên nhà…';
+  static const String DescriptionLienDaiHong = 'Là một trong những loại được lai Sen Đá Liên Đài Hồng rất khỏe và dễ sống ở khí hậu nóng như miền Bắc và miền Nam. Nếu bạn mới tập chơi và thích loại sen đài có màu sắc nhưng dễ chăm sóc thì có thể cân nhắc sở hữu.';
+}

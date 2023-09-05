@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+//Sử dụng GetX để quản lý trạng thái của trang và có quyền truy cập
 class ProductPage extends GetView<ProductController> {
   const ProductPage({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print('Product build');
+    //Sử dụng (Get.parameters) hiển thị một tiến trình đang chạy với CircularProgressIndicator
     print(Get.parameters['id']);
     
     if (Get.parameters['id'] == null) {
@@ -19,6 +21,7 @@ class ProductPage extends GetView<ProductController> {
       );
     }
 
+    //Gọi phương thức fetchProduct từ ProductController lấy thông tin sản phẩm
     controller.fetchProduct(int.parse(Get.parameters['id']!));
 
     final theme = Theme.of(context);
@@ -34,10 +37,12 @@ class ProductPage extends GetView<ProductController> {
   }
 
   Widget _build({required BuildContext context, required ProductModel product, required ThemeData theme, required bool isDarkMode}) {
+   //Hàm Scaffold chứa toàn bộ giao diện
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
+          //SliverAppBar là một phần trên đầu của trang, với ảnh nền của sản phẩm, có thể thu người dùng cuộn trang xuống
           SliverAppBar(
             expandedHeight: MediaQuery.of(context).size.height * 0.6,
             elevation: 0,
@@ -87,7 +92,7 @@ class ProductPage extends GetView<ProductController> {
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
-                height: MediaQuery.of(context).size.height * 0.55,
+                height: MediaQuery.of(context).size.height * 0.7,
                 color: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Column(
@@ -162,7 +167,7 @@ class ProductPage extends GetView<ProductController> {
                       ],
                     ),
                     SizedBox(height: 20,),
-                    Text("Take a break from jeans with the parker long straight pant. These lightweight, pleat front pants feature a flattering high waist and loose, straight legs.",
+                    Text(product.description.toString(),
                       style: TextStyle(height: 1.5, color: Colors.grey.shade800, fontSize: 15,),
                     ),
                     SizedBox(height: 30,),

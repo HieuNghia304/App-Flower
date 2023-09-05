@@ -26,6 +26,7 @@ class HomeController extends GetxController {
   var activeOffers = <OfferModel>[].obs;
   var categories = <CategoryModel>[].obs;
   var discountedProducts = <ProductModel>[].obs;
+  var roseProducts = <ProductModel>[].obs;
 
   List<Widget> pages = [
     ExploreTab(),
@@ -60,6 +61,7 @@ class HomeController extends GetxController {
   void getDiscountedProducts() {
     _productProvider.getDiscountedProducts().then((products) {
       discountedProducts(products);
+      roseProducts(products);
       print(products);
     });
   }
